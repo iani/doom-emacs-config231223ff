@@ -114,6 +114,7 @@
        ;;tty               ; improve the terminal Emacs experience
 
        :lang
+       (org +hugo)
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
        ;;(cc +lsp)         ; C > C++ == 1
@@ -198,3 +199,8 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+;; repeat hugo requirement:
+;;
+(doom! :lang
+       (org +hugo))
