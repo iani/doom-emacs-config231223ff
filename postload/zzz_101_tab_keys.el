@@ -2,4 +2,3 @@
 
 (global-set-key (kbd "M-s-<right>") 'tab-next)
 (global-set-key (kbd "M-s-<left>") 'tab-previous)
-(tab-new)

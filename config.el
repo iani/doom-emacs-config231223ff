@@ -102,6 +102,7 @@
 ;;   (global-undo-tree-mode))
 
 (map! :leader
+      :desc "desktop read" "d r" #'desktop-read
       :desc "org-mark-ring-goto" "m g o" #'org-mark-ring-goto
       :desc "org-cycle" "m g c" #'org-mark-ring-goto
       :desc "started date active" "o a s" #'org-set-started-date-active
@@ -228,4 +229,15 @@
     (setq org-roam-ui-sync-theme t
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
+          org-roam-ui-open-on-start t
+          org-roam-directory (expand-file-name "~/org/roam/")
+          ))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;haskell
+(setq haskell-stylish-on-save t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; tidal cycles
+;; (setq tidal-boot-script-path "~/.cabal/share/x86_64-osx-ghc-8.8.4/tidal-1.7.4/BootTidal.hs")
+(setq tidal-boot-script-path "~/.pulsar/packages/tidalcycles/lib/BootTidal.hs")

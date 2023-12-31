@@ -50,3 +50,7 @@
 ;; (unpin! t)
 (unpin! org-roam)
 (package! org-roam-ui)
+
+(package! haskell-mode)
+(package! lsp-haskell)
+(package! tidal)
