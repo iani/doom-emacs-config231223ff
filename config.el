@@ -103,6 +103,7 @@
 
 (map! :leader
       :desc "desktop read" "d r" #'desktop-read
+      :desc "dailies capture today" "d c" #'org-roam-dailies-capture-today
       :desc "org-mark-ring-goto" "m g o" #'org-mark-ring-goto
       :desc "org-cycle" "m g c" #'org-mark-ring-goto
       :desc "started date active" "o a s" #'org-set-started-date-active
@@ -220,18 +221,19 @@
     :after org-roam)
 
 (use-package! org-roam-ui
-    :after org-roam ;; or :after org
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-;;  :hook (after-init . org-roam-ui-mode)
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t
-          org-roam-directory (expand-file-name "~/org/roam/")
-          ))
+  :after org-roam ;; or :after org
+  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;         if you don't care about startup time, use
+  ;;  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t
+        org-roam-directory (expand-file-name "~/org/roam/")
+        diary-file (expand-file-name "~/org/roam/etc/diary")
+        ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;haskell
@@ -239,5 +241,5 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; tidal cycles
-;; (setq tidal-boot-script-path "~/.cabal/share/x86_64-osx-ghc-8.8.4/tidal-1.7.4/BootTidal.hs")
-(setq tidal-boot-script-path "~/.pulsar/packages/tidalcycles/lib/BootTidal.hs")
+(setq tidal-boot-script-path "~/.config/emacs/.local/straight/repos/Tidal/BootTidal.hs")
+;; (setq tidal-boot-script-path "~/.pulsar/packages/tidalcycles/lib/BootTidal.hs")
