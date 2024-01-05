@@ -102,16 +102,21 @@
 ;;   (global-undo-tree-mode))
 
 (map! :leader
+      :desc "org roam find file" "n r f" #'org-roam-node-find
+      :desc "org roam insert file" "n r i" #'org-roam-node-insert
       :desc "desktop read" "d r" #'desktop-read
       :desc "dailies capture today" "d c" #'org-roam-dailies-capture-today
       :desc "org-mark-ring-goto" "m g o" #'org-mark-ring-goto
       :desc "org-cycle" "m g c" #'org-mark-ring-goto
-      :desc "started date active" "o a s" #'org-set-started-date-active
-      :desc "started date inactive" "o a S" #'org-set-started-date-inactive
-      :desc "entered date active" "o a e" #'org-set-entered-date-active
-      :desc "entered date inactive" "o a E" #'org-set-entered-date-inactive
-      :desc "done date active" "o a d" #'org-set-done-date-active
-      :desc "done date inactive" "o a D" #'org-set-done-date-inactive
+      ;; ----------- set various date properties --------------
+      :desc "started date active" "t S" #'org-set-scheduled-date-active
+      :desc "started date inactive" "t s" #'org-set-scheduled-date-inactive
+      :desc "entered date active" "t E" #'org-set-entered-date-active
+      :desc "entered date inactive" "t e" #'org-set-entered-date-inactive
+      :desc "done date active" "t D" #'org-set-done-date-active
+      :desc "done date inactive" "t d" #'org-set-done-date-inactive
+      :desc "due date active" "t U" #'org-set-due-date-active
+      :desc "due date inactive" "t u" #'org-set-due-date-inactive
       :desc "calendar" "o c" #'calendar
       :desc "calc" "o C" #'calc
       ; :desc "find folder in project" "p F" #'projectile-find-dir
@@ -241,5 +246,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; tidal cycles
-(setq tidal-boot-script-path "~/.config/emacs/.local/straight/repos/Tidal/BootTidal.hs")
+(custom-set-variables
+ '(tidal-boot-script-path "/Users/iani/.pulsar/packages/tidalcycles/lib/BootTidal.hs")
+ '(tidal-interpreter "/Users/iani/.ghcup/bin/ghci")
+ )
 ;; (setq tidal-boot-script-path "~/.pulsar/packages/tidalcycles/lib/BootTidal.hs")

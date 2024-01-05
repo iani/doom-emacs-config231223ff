@@ -1,74 +1,105 @@
 ;;; postload/05_org-mode-utils.el -*- lexical-binding: t; -*-
 ;; Mon Aug  9 13:03:57 2021
 
-(defun org-set-done-date-active ()
-  "Set DATE_DONE property with active timestamp from user."
-  (interactive)
-  (org-set-property
-   "DATE-DONE"
-   (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))))
+;; 1 date_entered 2 date_scheduled 3 date_done 4 date_due
 
-(defun org-set-done-date-inactive ()
-  "Set DATE_DONE property with inactive timestamp from user."
-  (interactive)
-  (org-set-property
-   "DATE-DONE"
-   (concat
-           "["
-           (substring
-            (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
-            1 -1)
-           "]")))
-
+;;===== 1 DATE_ENTERED ACTIVE
 (defun org-set-entered-date-active ()
   "Set DATE_ENTERED property with active timestamp from user."
   (interactive)
   (org-set-property
-   "DATE-ENTERED"
-   (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))))
+   "DATE_ENTERED"
+   (concat
+    "<"
+    (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
+    ">")))
 
-(defun org-set-started-date-active ()
-  "Set DATE_STARTED property with active timestamp from user."
-  (interactive)
-  (org-set-property
-   "DATE-STARTED"
-   (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))))
-
+;;===== DATE_ENTERED INACTIVE
 (defun org-set-entered-date-inactive ()
-  "Set DATE_ENTERED property with inactive timestamp from user."
+  "Set DATE_DUE property with inactive timestamp from user."
   (interactive)
   (org-set-property
    "DATE_ENTERED"
    (concat
            "["
-           (substring
+           ;; (substring
             (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
-            1 -1)
+           ;; 1 -1)
            "]")))
 
-(defun org-set-started-date-inactive ()
-  "Set DATE_STARTED property with inactive timestamp from user."
+;;===== 2 DATE_SCHEDULED ACTIVE
+(defun org-set-scheduled-date-active ()
+  "Set DATE_SCHEDULED property with active timestamp from user."
   (interactive)
   (org-set-property
-   "DATE_STARTED"
+   "DATE_SCHEDULED"
+   (concat
+    "<"
+   (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
+   ">")))
+
+;;===== DATE_SCHEDULED INACTIVE
+(defun org-set-scheduled-date-inactive ()
+  "Set DATE_DUE property with inactive timestamp from user."
+  (interactive)
+  (org-set-property
+   "DATE_SCHEDULED"
    (concat
            "["
-           (substring
+          ;; (substring
             (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
-            1 -1)
+         ;;   1 -1)
            "]")))
 
-(defun org-set-done-date ()
+;;===== 3 DATE_DONE ACTIVE
+(defun org-set-done-date-active ()
+  "Set DATE_DONE property with active timestamp from user."
+  (interactive)
+  (org-set-property
+   "DATE_DONE"
+   (concat
+    "<"
+   (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
+   ">")))
+
+;;===== DATE_DONE INACTIVE
+(defun org-set-done-date-inactive ()
   "Set DATE_DONE property with inactive timestamp from user."
   (interactive)
   (org-set-property
    "DATE_DONE"
    (concat
            "["
-           (substring
+           ;; (substring
             (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
-            1 -1)
+           ;; 1 -1)
            "]")))
+
+;;===== 4. DATE_DUE ACTIVE
+(defun org-set-due-date-active ()
+  "Set DATE_DUE property with active timestamp from user."
+  (interactive)
+  (org-set-property
+    "DATE_DUE"
+   (concat
+    "<"
+    (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
+    ">")))
+
+;;===== DATE_DUE INACTIVE
+(defun org-set-due-date-inactive ()
+  "Set DATE_DONE property with inactive timestamp from user."
+  (interactive)
+  (org-set-property
+   "DATE_DUE"
+   (concat
+    "["
+    ;; (substring
+    (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
+    ;; 1 -1)
+    "]")))
+
+
 
 (defun org-set-date-from-user-active ()
   "Set DATE property with active timestamp from user "
