@@ -104,7 +104,6 @@
 ;;   (global-undo-tree-mode))
 
 (map! :leader
-      :desc "org latex set export dir and open terminal" "l t" #'org-latex-set-export-dir-and-open-iterm
       :desc "org roam find file" "n r f" #'org-roam-node-find
       :desc "org roam insert file" "n r i" #'org-roam-node-insert
       :desc "desktop read" "d r" #'desktop-read
@@ -199,28 +198,17 @@
        :desc "browse builtin classes" "B" #'sclang-browse-definitions
        :desc "browse user extension classes" "E" #'sclang-extensions-gui)
       (:prefix-map ("l" . "latex")
-       (:prefix ("b" . "buffer")
-        ;;; TODO : replace org-journal-new-entry with real commands
-        :desc "pdflatex -> pdf" "p" #'pdflatex-compile-buffer
-        :desc "xelatex -> pdf" "x" #'xelatex-compile-buffer
-        :desc "lualatex -> pdf" "l" #'lualatex-compile-buffer
-        :desc "edit template" "e" #'org-journal-new-entry
-        :desc "reveal template path" "r" #'org-journal-new-entry
-        :desc "set template path" "t" #'org-journal-search)
-       (:prefix ("s" . "subtree")
-        :desc "pdflatex -> pdf" "p" #'org-journal-new-entry
-        :desc "xelatex -> pdf" "x" #'org-journal-new-entry
-        :desc "lualatex -> pdf" "l" #'org-journal-new-entry
-        :desc "edit template" "e" #'org-journal-new-entry
-        :desc "reveal template path" "r" #'org-journal-new-entry
-        :desc "set template path" "t" #'org-journal-search))
+       :desc "org latex set export dir and open terminal" "t" #'org-latex-set-export-dir-and-open-iterm
+       :desc "org latex export buffer" "b" #'org-latex-export-buffer
+       :desc "org latex export subtree" "s" #'org-latex-export-subtree
+       )
       (:prefix ("b" . "buffer")
-        :desc "pdflatex -> pdf" "p" #'org-journal-new-entry
-        :desc "xelatex -> pdf" "x" #'org-journal-new-entry
-        :desc "lualatex -> pdf" "l" #'org-journal-new-entry
-        :desc "edit template" "e" #'org-journal-new-entry
-        :desc "reveal template path" "r" #'org-journal-new-entry
-        :desc "set template path" "t" #'org-journal-search))
+       :desc "pdflatex -> pdf" "p" #'org-journal-new-entry
+       :desc "xelatex -> pdf" "x" #'org-journal-new-entry
+       :desc "lualatex -> pdf" "l" #'org-journal-new-entry
+       :desc "edit template" "e" #'org-journal-new-entry
+       :desc "reveal template path" "r" #'org-journal-new-entry
+       :desc "set template path" "t" #'org-journal-search))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org-roam-ui:
