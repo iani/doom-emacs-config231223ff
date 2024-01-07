@@ -32,7 +32,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one)
+;; overriding default doom-theme 'doom-one to wombat:
+(setq doom-theme 'wombat)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -102,6 +104,7 @@
 ;;   (global-undo-tree-mode))
 
 (map! :leader
+      :desc "org latex set export dir and open terminal" "l t" #'org-latex-set-export-dir-and-open-iterm
       :desc "org roam find file" "n r f" #'org-roam-node-find
       :desc "org roam insert file" "n r i" #'org-roam-node-insert
       :desc "desktop read" "d r" #'desktop-read
@@ -251,3 +254,19 @@
  '(tidal-interpreter "/Users/iani/.ghcup/bin/ghci")
  )
 ;; (setq tidal-boot-script-path "~/.pulsar/packages/tidalcycles/lib/BootTidal.hs")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; latex ...
+
+;; from https://github.com/doomemacs/doomemacs/issues/955
+;; customize this to run with xelatex or lualatex ...
+;; or to run bibtex etc. ...
+;; (after! latex
+;;     (add-to-list 'TeX-command-list '("LatexMk" "latexmk -pdflatex='pdflatex -file-line-error -synctex=1' -pdf %t" TeX-run-TeX nil)))
+
+;; from sclang settings - adapt this to add latex path ...
+;; (setq exec-path (append exec-path '("/Applications/SuperCollider.app/Contents/MacOS")))
+;; also you should try setting PATH by adapting the code given in
+;; https://emacs.stackexchange.com/questions/41738/set-environment-variables-for-spawned-subprocesses
+;; (getenv  "PATH")
+(setenv "PATH" (concat (getenv  "PATH") ":/Library/TeX/texbin"))
