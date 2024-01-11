@@ -125,7 +125,15 @@
   ;; code evaluation
   (define-key map "\C-c\C-c"		'sclang-eval-region-or-line)
   (define-key map "\C-c\C-d"		'sclang-eval-region)
-  (define-key map "\C-\M-x"			'sclang-eval-defun)
+  ;; modifications for IZ!
+  (define-key map "\C-c\M-d"		'sclang-duplicate-current-snippet)
+  (define-key map "\C-c\M-c"		'sclang-copy-current-snippet)
+  (define-key map "\C-c\M-x"		'sclang-cut-current-snippet)
+  (define-key map "\C-\M-y"			'sclang-eval-defun)
+  (define-key map "\C-\M-x"			'sclang-eval-current-snippet)
+  (define-key map "\M-n"			'sclang-goto-next-snippet)
+  (define-key map "\M-p"			'sclang-goto-previous-snippet)
+  (define-key map "\C-\M-x"			'sclang-eval-current-snippet)
   (define-key map "\C-c\C-e"		'sclang-eval-expression)
   (define-key map "\C-c\C-f"		'sclang-eval-document)
   ;; language information
@@ -144,8 +152,9 @@
   ;; language control
   (define-key map "\C-c\C-r"		'sclang-main-run)
   (define-key map "\C-c\C-s"		'sclang-main-stop)
+  ;; server panel does not work in my emacs (IZ Thu 11 Jan 2024 13:56)
   (define-key map "\C-c\C-p"		'sclang-show-server-panel)
-  (define-key map "\C-c\C-k"		'sclang-edit-dev-source)
+  (define-key map "\C-c\C-k"		'sclang-edit-dev-source) ;; also needs fixing
   ;; electric characters
   (define-key map "}"				'sclang-electric-brace)
   (define-key map ")"				'sclang-electric-brace)

@@ -2,7 +2,7 @@
 
 (after! 'sclang
   (define-key sclang-mode-map (kbd "C-M-.") 'sclang-snippet-bufplay)
-  (define-key sclang-mode-map (kbd "C-M-.") 'sclang-snippet-bufplay)
+  ;; (define-key sclang-mode-map (kbd "C-M-.") 'sclang-snippet-bufplay)
   (define-key sclang-mode-map (kbd "C-h g s") 'sclang-startupfiles-gui)
   (define-key sclang-mode-map (kbd "C-h g a") 'sclang-audiofiles-gui)
   (define-key sclang-mode-map (kbd "C-h g p") 'sclang-players-gui)
@@ -10,6 +10,7 @@
   (define-key sclang-mode-map (kbd "C-h g n") 'sclang-nevent-gui)
   (define-key sclang-mode-map (kbd "C-S-s") 'hydra-snippets/body)
   (define-key sclang-mode-map (kbd "C-S-l") 'hydra-sclang/body)
+  (define-key sclang-mode-map (kbd "C-M-x") 'sclang-eval-current-snippet)
        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Server state visualisation utilities
   ;; TODO: Check and re-assign these commands for consistency with
