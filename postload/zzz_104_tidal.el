@@ -37,4 +37,6 @@
 (defun tidal-run-region-fixed ()
   "Run tidal-eval-multiple-lines instead of eval-region."
   (interactive)
-  (tidal-eval-multiple-lines))
+  (tidal-eval-multiple-lines)
+  (set-mark-command t) ;; unmark the region
+  )
