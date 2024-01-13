@@ -33,8 +33,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-;; overriding default doom-theme 'doom-one to wombat:
-(setq doom-theme 'doom-badger)
+;; overriding default doom-theme 'doom-one to something else (changing over time):
+(setq doom-theme 'leuven-dark)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -235,13 +235,6 @@
 ;;haskell
 (setq haskell-stylish-on-save t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; tidal cycles
-(custom-set-variables
- '(tidal-boot-script-path "/Users/iani/.pulsar/packages/tidalcycles/lib/BootTidal.hs")
- '(tidal-interpreter "/Users/iani/.ghcup/bin/ghci")
- )
-;; (setq tidal-boot-script-path "~/.pulsar/packages/tidalcycles/lib/BootTidal.hs")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; latex ...
