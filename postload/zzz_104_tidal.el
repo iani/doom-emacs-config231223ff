@@ -32,6 +32,10 @@
   (define-key tidal-mode-map (kbd "S-<return>") 'tidal-run-line)
   ;; run my fixed version of tidal-run-region
   (define-key tidal-mode-map (kbd "M-<return>") 'tidal-run-region-fixed)
+  ;; overwrite sardine C-c C-c to to eval tidal region - does not work
+  ;; cannot overwrite haskell mode bindings.
+  ;; (define-key tidal-mode-map (kbd "C-c C-c") 'tidal-run-region-fixed)
+  ;; (define-key tidal-mode-map (kbd "C-c C-x") 'tidal-hush)
   )
 
 (defun tidal-run-region-fixed ()
@@ -40,3 +44,11 @@
   (tidal-eval-multiple-lines)
   (set-mark-command t) ;; unmark the region
   )
+
+;; testing override by haskell ...
+;; (global-set-key (kbd "C-c C-c") 'tidal-run-region-fixed)
+;; very dirty solution for being unable to override the haskell keybinding in tidal:
+;; (defun haskell-process-cabal-build ()
+;;   "very dirty solution for being unable to override the haskell keybinding in tidal"
+;;   (interactive)
+;;   (tidal-run-region-fixed))
