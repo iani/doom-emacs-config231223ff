@@ -108,6 +108,8 @@
       :desc "org roam insert file" "n r i" #'org-roam-node-insert
       :desc "desktop read" "d r" #'desktop-read
       :desc "dailies capture today" "d c" #'org-roam-dailies-capture-today
+      ;; just because I keep typing "t" for "today" ...
+      :desc "dailies capture today" "d t" #'org-roam-dailies-capture-today
       :desc "org-mark-ring-goto" "m g o" #'org-mark-ring-goto
       :desc "org-cycle" "m g c" #'org-mark-ring-goto
       ;; ----------- set various date properties --------------
