@@ -99,7 +99,16 @@
     ;; 1 -1)
     "]")))
 
-
+;;===== 5. DATE_CHECKED INACTIVE
+(defun org-set-checked-date-inactive ()
+  "Set DATE_CHECKED property with inactive timestamp from user."
+  (interactive)
+  (org-set-property
+   "DATE_CHECKED"
+   (concat
+           "["
+            (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
+           "]")))
 
 (defun org-set-date-from-user-active ()
   "Set DATE property with active timestamp from user "

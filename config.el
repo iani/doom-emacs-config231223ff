@@ -111,6 +111,7 @@
       :desc "org-mark-ring-goto" "m g o" #'org-mark-ring-goto
       :desc "org-cycle" "m g c" #'org-mark-ring-goto
       ;; ----------- set various date properties --------------
+      :desc "checked date inactive" "t c" #'org-set-checked-date-inactive
       :desc "started date active" "t S" #'org-set-scheduled-date-active
       :desc "started date inactive" "t s" #'org-set-scheduled-date-inactive
       :desc "entered date active" "t E" #'org-set-entered-date-active
