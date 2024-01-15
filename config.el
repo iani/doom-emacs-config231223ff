@@ -45,6 +45,7 @@
 (setq org-directory "~/org/")
 (setq org-agenda-files '("~/org" "~/org/journal/" "~/org/roam" "~/org/roam/daily"))
 (setq org-support-shift-select t)
+;; (setq org-fancy-priorities-list '("↑" "→" "↓"))
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -82,7 +83,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Iosevka")))))
+ '(default ((t (:family "Iosevka" :weight light :height 180)))))
+
+(set-fontset-font t 'greek (font-spec :family "Helvetica" :weight 'normal :height 0.75))
+
+
 
 (let ((user-packages (concat doom-private-dir "user-packages/*"))
       (postload (concat doom-private-dir "postload/*.el")))
@@ -99,17 +104,22 @@
           (file-expand-wildcards postload))
   )
 
+;; (define-package org-fancy-priorities)
 ;; (use-package! undo-tree
 ;;   :config
 ;;   (global-undo-tree-mode))
 
 (map! :leader
+      :desc "fix fonts" "o x" #'fix-fonts
       :desc "org roam find file" "n r f" #'org-roam-node-find
       :desc "org roam insert file" "n r i" #'org-roam-node-insert
       :desc "desktop read" "d r" #'desktop-read
       :desc "dailies capture today" "d c" #'org-roam-dailies-capture-today
       ;; just because I keep typing "t" for "today" ...
       :desc "dailies capture today" "d t" #'org-roam-dailies-capture-today
+      :desc "dailies find date" "d d" #'org-roam-dailies-find-date
+      :desc "dailies find next" "d n" #'org-roam-dailies-find-next-note
+      :desc "dailies find previous" "d p" #'org-roam-dailies-find-previous-note
       :desc "org-mark-ring-goto" "m g o" #'org-mark-ring-goto
       :desc "org-cycle" "m g c" #'org-mark-ring-goto
       ;; ----------- set various date properties --------------

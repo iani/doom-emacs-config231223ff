@@ -54,3 +54,7 @@
 (package! haskell-mode)
 (package! lsp-haskell)
 (package! tidal)
+(package! org-fancy-priorities)
+;; 3  :hook (org-mode . org-fancy-priorities-mode)
+  ;; :config
+  ;; (setq org-fancy-priorities-list '("↑" "→" "↓")))org-fancy-priorities)
