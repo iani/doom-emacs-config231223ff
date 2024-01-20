@@ -34,7 +34,8 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
 ;; overriding default doom-theme 'doom-one to something else (changing over time):
-(setq doom-theme 'leuven-dark)
+(setq doom-theme 'doom-zenburn)
+;; (setq doom-theme 'doom-peacock)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -264,3 +265,9 @@
 ;; https://emacs.stackexchange.com/questions/41738/set-environment-variables-for-spawned-subprocesses
 ;; (getenv  "PATH")
 (setenv "PATH" (concat (getenv  "PATH") ":/Library/TeX/texbin"))
+
+;; these don't work?????
+;; (setq centaur-tabs-height 52)
+;; Now I seem to be getting 2 tabs one below the other.
+
+;; (setq centaur-tabs-set-icons t)
