@@ -114,6 +114,9 @@
       :desc "fix fonts" "o x" #'fix-fonts
       :desc "org roam find file" "n r f" #'org-roam-node-find
       :desc "org roam insert file" "n r i" #'org-roam-node-insert
+      :desc "consult org roam backlinks" "n r b" #'consult-org-roam-backlinks
+      :desc "consult org roam forward links" "n r l" #'consult-org-roam-forward-links
+      :desc "consult org roam file find" "n r F" #'consult-org-roam-file-find
       :desc "desktop read" "d r" #'desktop-read
       :desc "dailies capture today" "d c" #'org-roam-dailies-capture-today
       ;; just because I keep typing "t" for "today" ...
