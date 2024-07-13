@@ -112,6 +112,7 @@
 
 (map! :leader
       :desc "fix fonts" "o x" #'fix-fonts
+      :desc "capture date" "d D" #'org-roam-dailies-capture-date
       :desc "org roam find file" "n r f" #'org-roam-node-find
       :desc "org roam insert file" "n r i" #'org-roam-node-insert
       :desc "consult org roam backlinks" "n r b" #'consult-org-roam-backlinks
@@ -141,7 +142,8 @@
       ; :desc "find folder in project" "p F" #'projectile-find-dir
       :desc "org mark element" "o m" #'org-mark-element
       ;; (:prefix-map ("e" . "input encoding")
-       :desc "toggle input encoding method" "e" #'toggle-encoding
+       :desc "toggle greek input encoding method" "e" #'toggle-greek-encoding
+       :desc "toggle japanese input encoding method" "J" #'toggle-japanese-encoding
        ;; :desc "toggle" "t" #'toggle-encoding
        ;; :desc "english ucs" "e" #'set-encoding-ucs)
        (:prefix-map ("v" . "various iani")

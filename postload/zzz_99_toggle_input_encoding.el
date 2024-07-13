@@ -17,13 +17,21 @@
   (interactive)
   (set-input-method 'japanese))
 
-(defun toggle-encoding ()
+(defun toggle-greek-encoding ()
   "Toggle encoding between greek and ucs."
   (interactive)
   ;; (message "The encoding is: %s" current-input-method)
   (if (equal current-input-method "greek")
       (set-input-method 'ucs)
     (set-input-method 'greek)))
+
+(defun toggle-japanese-encoding ()
+  "Toggle encoding between greek and ucs."
+  (interactive)
+  ;; (message "The encoding is: %s" current-input-method)
+  (if (equal current-input-method "japanese")
+      (set-input-method 'ucs)
+    (set-input-method 'japanese)))
 
 (defun set-greek-fontset ()
   "Set greek fontset size. Workaround - experimental."
