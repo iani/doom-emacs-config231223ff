@@ -1,5 +1,0 @@
-;;; postload/zzz_104_tidal.el -*- lexical-binding: t; -*-
-
-(add-to-list 'load-path "~/Dev/tidalemacs/")
-(require 'haskell-mode)
-(require 'tidal)

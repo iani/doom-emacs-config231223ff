@@ -58,3 +58,26 @@
 ;; 3  :hook (org-mode . org-fancy-priorities-mode)
   ;; :config
   ;; (setq org-fancy-priorities-list '("↑" "→" "↓")))org-fancy-priorities)
+(package!
+  el-sc :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/el-sc.git")
+  )
+
+(package!
+  ob-sc :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/ob-sc.git")
+  )
+
+(package!
+  ox-sc :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/ox-sc.git")
+  )
+
+(package!
+  org-sc :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/org-sc.git")
+  )
+
+(package!
+  sclang-el :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/sclang-el.git")
+  )
+
+(package!
+  el-sc-tweaks :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/el-sc-tweaks.git")
+  )
