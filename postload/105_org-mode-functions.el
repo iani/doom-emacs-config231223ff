@@ -110,6 +110,29 @@
             (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
            "]")))
 
+;;===== 6. TIME_STARTED INACTIVE
+(defun org-set-time-started-inactive ()
+  "Set TIME_STARTED property with inactive timestamp from user."
+  (interactive)
+  (org-set-property
+   "TIME_STARTED"
+   (concat
+           "["
+            (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
+           "]")))
+
+;;===== 7. TIME_STOPPED INACTIVE
+(defun org-set-time-stopped-inactive ()
+  "Set TIME_STOPPED property with inactive timestamp from user."
+  (interactive)
+  (org-set-property
+   "TIME_STOPPED"
+   (concat
+           "["
+            (format-time-string (cdr org-time-stamp-formats) (org-read-date t t))
+           "]")))
+
+
 (defun org-set-date-from-user-active ()
   "Set DATE property with active timestamp from user "
   (interactive)

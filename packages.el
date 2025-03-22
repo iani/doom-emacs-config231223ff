@@ -67,7 +67,13 @@
   )
 
 (package!
-  ox-sc :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/ox-sc.git")
+  ox-sc :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/ox-sc.git"
+  :files ("*.el" ;;
+          ;;
+          "*.org"
+          ;;"ox-sc-setupfile.*.org"
+          )
+                       )
   )
 
 (package!
@@ -75,9 +81,23 @@
   )
 
 (package!
-  sclang-el :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/sclang-el.git")
+  sclang-el :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/sclang-el.git"
+                           :files ("el/*.el")
+                           )
   )
 
 (package!
   el-sc-tweaks :recipe (:type git :host nil :repo "https://doom:ifGdKsph8aBv9FXoDfky@gitlab.com/scLiterate/el-sc-tweaks.git")
   )
+
+(package!
+  ob-hook-ctrl :recipe (:type git :host nil :repo "https://doom:z54yMaxw_c4E-44XqN5m@gitlab.com/obTools/ob-hook-ctrl.git")
+  )
+
+(package!
+  ob-tangle-protect-hook :recipe (:type git :host nil
+                                :repo "https://doom:z54yMaxw_c4E-44XqN5m@gitlab.com/obTools/ob-tangle-protect-hook.git")
+  )
+
+
+(package! sclang-extensions)

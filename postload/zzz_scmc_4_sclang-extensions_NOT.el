@@ -1,12 +1,12 @@
 ;;; postload/zzz_scmc_4_sclang-extensions.el -*- lexical-binding: t; -*-
 
-;; (use-package! sclang-extensions
-;;  ;; :when (modulep! +sclang_extensions)
-;;   :after sclang
-;;   :init
-;;   (message "@@ use-package @@ sclang-extensions +sclang_extensions performing :init")
-;;   :config
-;;   (message "@@ use-package @@ sclang-extensions +sclang_extensions performing :config")
+;;  (use-package! sclang-extensions
+  ;; :when (modulep! +sclang_extensions)
+ ;;  :after sclang
+  ;; :init
+ ;;  (message "@@ use-package @@ sclang-extensions +sclang_extensions performing :init")
+  ;; :config
+  ;; (message "@@ use-package @@ sclang-extensions +sclang_extensions performing :config")
 
 ;;   (add-hook 'sclang-mode-hook 'sclang-extensions-mode)
 

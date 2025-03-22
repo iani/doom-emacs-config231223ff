@@ -6,6 +6,7 @@
   ;; :init
   ;; « ref_el-sc-el_sc-init»
   :config
+  (message "this is use-package! el-sc")
   (defun sclang-set-default-directory-of-non-file-visiting-buffers ()
     (unless
         ;; (or (local-variable-p 'default-directory)

@@ -3,6 +3,9 @@
 (use-package! el-sc-tweaks
  ;; :when (and (modulep! +el_sc) (modulep! +el_sc_tweaks))
   :after el-sc
+  :config
+    (message "this is use-package! el-sc-tweaks")
+
   ;; :init
   ;; « ref_el-sc-tweaks-el_sc_tweaks-init»
   ;; :config

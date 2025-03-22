@@ -1,8 +1,8 @@
 ;;; postload/zzz_scmc_1.el -*- lexical-binding: t; -*-
 
 (use-package! sclang
-  :commands (sclang-start sclang-mode)
-  :bind (("C-c M-S" . sclang-start))
+  ;; :commands (sclang-start sclang-mode)
+  ;; :bind (("C-c M-S" . sclang-start))
   :init
   (eval-after-load 'sclang-interp
     '(progn
@@ -11,6 +11,7 @@
          (require 'sclang))
        ))
   :config
+  (message "this is use-package! sclang")
   (when (and (modulep! +tree-sitter)
              (modulep! :tools tree-sitter)
              (modulep! :tools tree-sitter-ext))
