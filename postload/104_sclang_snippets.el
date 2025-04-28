@@ -127,6 +127,23 @@
                   (file-name-nondirectory (buffer-file-name))))
        snippet) t)))
 
+(defun sclang-store-snippet-as-startup (&optional player-p)
+  "Save current snippet as startup file in startup folder
+for use with Paths class.
+THIS FUNCTION IS NOT COMPLETE."
+  (interactive "P")
+  (let* (sclang-snippet-is-routine
+         sclang-snippet-is-loop
+         (snippet (sclang-get-current-snippet)))
+    (if sclang-snippet-is-routine
+        (setq snippet (format "{\n %s\n }.fork" snippet)))
+    (if sclang-snippet-require-server
+        (setq snippet (format "Server.default.waitForBoot({\n  %s \n})" snippet)))
+    (if sclang-snippet-is-loop
+        (setq snippet (format "{\n loop {\n %s \n} \n }.fork" snippet)))
+     (sclang-eval-string
+     (format "postln(%s);" snippet))))
+
 (defun sclang-eval-current-snippet-with-timer ()
   "Evaluate current snippet as routine, and start a timer at the beginning."
   (interactive)

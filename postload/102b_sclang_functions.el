@@ -34,6 +34,11 @@
 )
 (global-set-key "\C-cz" 'show-file-name)
 
+(defun sclang-osc-monitor ()
+  "Open OscMonitor gui"
+  (interactive)
+  (sclang-eval-string "OscMonitor.gui"))
+
 (defun sclang-open-buffer-as-script ()
   "Open OscData gui on path of current buffer"
   (interactive)

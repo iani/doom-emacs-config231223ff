@@ -109,6 +109,8 @@
 ;;   (global-undo-tree-mode))
 
 (map! :leader
+      :desc "dired do symink" "m d" #'dired-do-symlink
+      :desc "yank from kill ring" "m y" #'yank-from-kill-ring
       :desc "org-roam-set-directory" "n r d" #'org-roam-set-directory
       :desc "org-roam-db-sync" "n r s" #'org-roam-db-sync
       :desc "fix fonts" "o x" #'fix-fonts
@@ -165,6 +167,7 @@
        :desc "reset server options" "o" #'sclang-reset-server-options)
       (:prefix-map ("j" . "SuperCollider")
        (:prefix ("l" . "sclang")
+       :desc "sclang open OscMonitor gui" "o" #'sclang-osc-monitor
        :desc "sclang open script" "o" #'sclang-open-buffer-as-script
        :desc "sclang open script" "O" #'sclang-open-buffer-as-preset
        :desc "sclang post currentEnvironment" "e" #'sclang-post-current-environment
