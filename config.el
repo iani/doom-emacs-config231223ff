@@ -167,7 +167,7 @@
        :desc "reset server options" "o" #'sclang-reset-server-options)
       (:prefix-map ("j" . "SuperCollider")
        (:prefix ("l" . "sclang")
-       :desc "sclang open OscMonitor gui" "o" #'sclang-osc-monitor
+       :desc "sclang open OscMonitor gui" "m" #'sclang-osc-monitor
        :desc "sclang open script" "o" #'sclang-open-buffer-as-script
        :desc "sclang open script" "O" #'sclang-open-buffer-as-preset
        :desc "sclang post currentEnvironment" "e" #'sclang-post-current-environment
