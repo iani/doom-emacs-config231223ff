@@ -315,3 +315,9 @@
 (global-set-key (kbd "C-c C-x T") 'org-insert-current-time)
 (provide 'org_mode_utils_and_key_map)
 ;;; 029_org_mode_utils_and_key_map.el ends here
+
+(global-set-key (kbd "C-c C-x y") 'insert-backslash)
+(global-set-key (kbd "s-¥") 'insert-backslash)
+(defun insert-backslash ()
+  (interactive)
+  (insert (char-from-name "BACKSLASH")))
