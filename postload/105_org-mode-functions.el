@@ -317,7 +317,7 @@
 ;;; 029_org_mode_utils_and_key_map.el ends here
 
 (global-set-key (kbd "C-c C-x y") 'insert-backslash)
-(global-set-key (kbd "s-¥") 'insert-backslash)
+(global-set-key (kbd "C-¥") 'insert-backslash)
 (defun insert-backslash ()
   (interactive)
   (insert (char-from-name "BACKSLASH")))

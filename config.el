@@ -109,6 +109,7 @@
 ;;   (global-undo-tree-mode))
 
 (map! :leader
+      :desc "backslash" "_" #'insert-backslash
       :desc "dired do symink" "m d" #'dired-do-symlink
       :desc "yank from kill ring" "m y" #'yank-from-kill-ring
       :desc "org-roam-set-directory" "n r d" #'org-roam-set-directory
