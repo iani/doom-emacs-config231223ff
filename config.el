@@ -274,7 +274,8 @@
 ;; https://emacs.stackexchange.com/questions/41738/set-environment-variables-for-spawned-subprocesses
 ;; (getenv  "PATH")
 (setenv "PATH" (concat (getenv  "PATH") ":/Library/TeX/texbin"))
-
+(add-to-list 'exec-path "/opt/homebrew/bin")
+(setenv "PATH" (concat "/opt/homebrew/bin:" (getenv "PATH")))
 ;; these don't work?????
 ;; (setq centaur-tabs-height 52)
 ;; Now I seem to be getting 2 tabs one below the other.
@@ -285,4 +286,165 @@
 ;;  -*- lexical-binding: t; -*-
 ;; (message "-- config -- [lang | SuperCollider] config.el")
 ;; ------------ SCLANG
+
+;; Fixing ag?
+(after! projectile
+  (setq projectile-generic-command "rg --files --hidden --follow --glob '!.git/'")
+  (map! :map projectile-command-map
+        "a" #'projectile-ripgrep))
+
+(after! counsel
+  (setq counsel-grep-base-command
+        "rg -i -M 120 --no-heading --line-number --color never %s ."))
+
+;; If anything still tries to call ag, kill it hard:
+(setq ag-executable nil)
+(after! projectile
+
+  ;; ✅ OVERRIDE projectile-ag to use the SYSTEM ag binary directly
+  ;; ✅ Does NOT depend on the ag.el Emacs package
+  ;; ✅ Will NEVER say "Package 'ag' is not available"
+
+  (defun projectile-ag (search-term &optional arg)
+    "Run ag directly via shell using SEARCH-TERM in the project.
+With optional prefix ARG, treat SEARCH-TERM as a regexp."
+    (interactive
+     (list (projectile--read-search-string-with-default
+            (format "Ag %ssearch for"
+                    (if current-prefix-arg "regexp " "")))
+           current-prefix-arg))
+
+    (if (executable-find "ag")
+        (let* ((root (projectile-acquire-root))
+               (command
+                (if arg
+                    (format "ag --regexp '%s' %s" search-term root)
+                  (format "ag '%s' %s" search-term root))))
+          ;; ✅ Run via compilation so results are clickable
+          (compilation-start command 'grep-mode))
+      (error "ag executable not found in PATH")))
+  (define-key projectile-command-map (kbd "a")
+              #'consult-ripgrep))
+(after! ag
+  ;; Force ag.el to use Projectile's project root cleanly
+  (setq ag-project-root-function #'projectile-project-root)
+  ;; Avoid weird directory prompts
+  (setq ag-reuse-buffers t))
+
+(after! org
+  (require 'ox)
+  (require 'ox-ascii)
+  ;; (set-face-attribute 'org-level-1 nil :height 1.6 :weight 'bold)
+  ;; (set-face-attribute 'org-level-2 nil :height 1.4 :weight 'bold)
+  ;; (set-face-attribute 'org-level-3 nil :height 1.25 :weight 'bold)
+  ;; (set-face-attribute 'org-level-4 nil :height 1.15 :weight 'bold)
+
+  (let ((serif1 "Palatino")
+        (serif2 "TeX Gyre Pagella"))
+    (set-face-attribute 'org-level-1 nil :family serif1 :height 1.65 :weight 'bold)
+    (set-face-attribute 'org-level-2 nil :family serif1 :height 1.45 :weight 'bold)
+    (set-face-attribute 'org-level-3 nil :family serif2 :height 1.30 :weight 'semi-bold)
+    (set-face-attribute 'org-level-4 nil :family serif2 :height 1.18 :weight 'semi-bold)
+    (set-face-attribute 'org-level-5 nil :family serif2 :height 1.1 :weight 'semi-bold)
+    (set-face-attribute 'org-level-6 nil :family serif2 :height 1.05 :weight 'semi-bold)
+    (set-face-attribute 'org-level-7 nil :family serif2 :height 1.0 :weight 'semi-bold)
+    (set-face-attribute 'org-level-8 nil :family serif2 :height 1.0 :weight 'semi-bold)
+    ))
+
+(after! ox
+  (require 'ox-ascii)
+  )
+
+(use-package! ox-ascii
+  :after org
+  :config
+  (setq org-ascii-charset 'utf-8))
+
+(map! :leader
+      :desc "Export Org → TXT (UTF-8)"
+      "m e t"
+      #'org-ascii-export-to-ascii)
+
+(defun my/org-export-with-pandoc ()
+  "Export current Org buffer to DOCX via Pandoc."
+  (interactive)
+  (let ((outfile (concat (file-name-sans-extension buffer-file-name) ".docx")))
+    (shell-command
+     (format "pandoc %s -o %s"
+             (shell-quote-argument buffer-file-name)
+             (shell-quote-argument outfile)))
+    (message "Exported to %s" outfile)))
+
+(map! :leader
+      :desc "Org → Pandoc (DOCX)"
+      "m e P"
+      #'my/org-export-with-pandoc)
+
+(defun my/org-pandoc-export-apa-docx-debug ()
+  "Debug export Org to DOCX with APA using Pandoc."
+  (interactive)
+  (let* ((infile (buffer-file-name))
+         (outfile (concat (file-name-sans-extension infile) ".docx"))
+         (bibfile (expand-file-name "references.bib"))
+         (cslfile (expand-file-name "~/.csl/apa.csl"))
+         (cmd (format
+               "pandoc %s --citeproc --bibliography=%s --csl=%s -o %s"
+               (shell-quote-argument infile)
+               (shell-quote-argument bibfile)
+               (shell-quote-argument cslfile)
+               (shell-quote-argument outfile))))
+    (message "Running: %s" cmd)
+    (async-shell-command cmd "*Pandoc Export Debug*")))
+
+(map! :leader
+      :desc "Org → Pandoc APA DOCX (DEBUG)"
+      "m e A"
+      #'my/org-pandoc-export-apa-docx-debug)
+
+(defun my/org-pandoc-export-apa-docx ()
+  "Export Org to DOCX with APA citations via Pandoc."
+  (interactive)
+  (let* ((infile buffer-file-name)
+         (outfile (concat (file-name-sans-extension infile) ".docx")))
+    (shell-command
+     (format
+      "pandoc %s --citeproc --bibliography=references.bib --csl=%s -o %s"
+      (shell-quote-argument infile)
+      (shell-quote-argument "~/.csl/apa.csl")
+      (shell-quote-argument outfile)))
+    (message "Exported with APA citations to %s" outfile)))
+
+(defun my/org-pandoc-export-apa-docx ()
+  "Export Org → Markdown → DOCX with APA citations (robust Pandoc pipeline)."
+  (interactive)
+  (let* ((infile (file-truename buffer-file-name))
+         (base   (file-name-sans-extension infile))
+         (mdfile (concat base ".md"))
+         (outfile (concat base ".docx"))
+         (bibfile "/Users/iani/Documents/Projects/IMAGINE_MOCAP_ELIDEK_Kyriakoulakos240101/PapersFromTeam/PapersIonio/ZannosCarleDCAC25_Paper/references.bib")
+         (cslfile "/Users/iani/.csl/apa.csl")
+         (cmd (format
+               "pandoc %s -f org -t markdown -o %s && pandoc %s --citeproc --bibliography=%s --csl=%s -o %s"
+               (shell-quote-argument infile)
+               (shell-quote-argument mdfile)
+               (shell-quote-argument mdfile)
+               (shell-quote-argument bibfile)
+               (shell-quote-argument cslfile)
+               (shell-quote-argument outfile))))
+    (message "Running: %s" cmd)
+    (shell-command cmd "*Pandoc Export*")))
+
+(map! :leader
+      :desc "Org → Pandoc APA DOCX via md"
+      "m e a"
+      #'my/org-pandoc-export-apa-docx)
+;; (use-package citeproc)
+
+(setq org-latex-pdf-process
+      '("pdflatex -interaction nonstopmode -jobname=%b %f"
+        "biber %b"
+        "pdflatex -interaction nonstopmode -jobname=%b %f"
+        "pdflatex -interaction nonstopmode -jobname=%b %f"))
+
+
 

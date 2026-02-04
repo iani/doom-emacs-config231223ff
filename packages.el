@@ -101,3 +101,5 @@
 
 
 (package! sclang-extensions)
+(package! ag)
+(package! ws-butler :disable t)
