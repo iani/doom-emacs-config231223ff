@@ -446,5 +446,8 @@ With optional prefix ARG, treat SEARCH-TERM as a regexp."
         "pdflatex -interaction nonstopmode -jobname=%b %f"
         "pdflatex -interaction nonstopmode -jobname=%b %f"))
 
-
+(setq org-agenda-files
+      (directory-files-recursively
+       "~/org/roam"
+       "\\.org$"))
 
